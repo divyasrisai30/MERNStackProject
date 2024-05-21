@@ -10,8 +10,7 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 export default function UserItem(props) {
   return (
    <li className='user-item'>
-    <div className='user-item__content'>
-        <Card>
+        <Card className='user-item__content'>
             <Link to="/{`/${props.id}/places`}">
             <div className='user-item__image'>
                     <Avatar src={props.image} ait={props.name} ></Avatar>
@@ -25,7 +24,6 @@ export default function UserItem(props) {
                 </div>
             </Link>
         </Card>
-    </div>
     
    </li>
   )
