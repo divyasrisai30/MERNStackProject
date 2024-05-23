@@ -18,7 +18,7 @@ function App() {
           <Route path="/" exact>
             <Users></Users>
           </Route>
-          <Route path="/:userId/places" exact>
+          <Route path="/:userId/places" >
             <UserPlaces></UserPlaces>
           </Route>
           <Route path="/places/new" exact>
