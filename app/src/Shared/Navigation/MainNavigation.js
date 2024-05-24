@@ -20,8 +20,7 @@ const Mainavigation = props =>{
     const closeDrawerHanlder = ()=>{
         setDrawerIsOpen(false);
     }
-    // console.log(drawerIsOpen);
-    // console.log(setDrawerIsOpen);
+   
     return (
         <React.Fragment>
             

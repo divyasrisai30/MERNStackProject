@@ -11,7 +11,8 @@ export default function UserItem(props) {
   return (
    <li className='user-item'>
         <Card className='user-item__content'>
-            <Link to="/{`/${props.id}/places`}">
+        
+            <Link to={`/${props.id}/places`}>
             <div className='user-item__image'>
                     <Avatar src={props.image} ait={props.name} ></Avatar>
                     {/* <img src={props.image} alt={props.name}/> */}

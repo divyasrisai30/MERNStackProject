@@ -10,7 +10,9 @@ function Users() {
     places:"3"
   }
 ]
+
   return (
+    
     <UserList items={USER}/>
   )
 }
