@@ -3,8 +3,8 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom"
 import Users from './User/Pages/Users';
 import NewPlaces from './Places/Pages/NewPlaces';
-import Mainavigation from './Shared/Navigation/MainNavigation';
-import MainHeader from './Shared/Navigation/MainHeader';
+import Mainavigation from './Shared/Componets/Navigation/MainNavigation';
+import MainHeader from './Shared/Componets/Navigation/MainHeader';
 import UserPlaces from './Places/Pages/UserPlaces';
 
 function App() {

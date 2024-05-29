@@ -1,7 +1,14 @@
 import React from 'react'
 
+import Input from '../../Shared/FormElements/Input'
+
+import "./NewPlaces.css"
+
+
 export default function NewPlaces() {
   return (
-    <div>New Paves</div>
+    <form className='place-form'>
+      <Input element="input" type="text" label="Title" vaildator={[]}></Input>
+    </form>
   )
 }
