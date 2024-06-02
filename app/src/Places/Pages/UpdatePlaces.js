@@ -8,6 +8,8 @@ import {
 } from "../../Shared/util/validators";
 import Button from "../../Shared/Componets/FormElements/Button";
 
+import "../Components/PlaceForm.css"
+
 const DUMMY_PLACES = [
   {
     //array of objects
@@ -54,7 +56,7 @@ const UpdatePlaces = () => {
   }
 
   return (
-    <form>
+    <form className="place-form">
       <Input
         id="title"
         element="input"

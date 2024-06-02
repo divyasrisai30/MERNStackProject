@@ -48,6 +48,10 @@ export default function NewPlaces() {
       description:{
         value:"",
         isValid: false
+      },
+      address:{
+        value:"",
+        isValid: false
       }
     },
     isValid: false
