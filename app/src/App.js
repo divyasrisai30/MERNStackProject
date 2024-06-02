@@ -6,6 +6,7 @@ import NewPlaces from './Places/Pages/NewPlaces';
 import Mainavigation from './Shared/Componets/Navigation/MainNavigation';
 import MainHeader from './Shared/Componets/Navigation/MainHeader';
 import UserPlaces from './Places/Pages/UserPlaces';
+import  UpdatePlaces  from './Places/Pages/UpdatePlaces';
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
           </Route>
           <Route path="/places/new" exact>
             <NewPlaces/>
+          </Route>
+          {/* Caution: ORDER MATTERS. use this only after "/places/<something>" beacause "/places/:placeId" is a dynamic link which might be similar or confuse to "/places/<something>" link  */}
+          <Route path="/places/:placeId">
+            <UpdatePlaces/>
           </Route>
           <Redirect to="/"/>
           </Switch>
