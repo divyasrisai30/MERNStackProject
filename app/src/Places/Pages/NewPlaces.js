@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from "react";
+import React from "react";
 
 import Input from "../../Shared/Componets/FormElements/Input";
 import {  VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../Shared/util/validators";
@@ -6,41 +6,15 @@ import Button from "../../Shared/Componets/FormElements/Button"
 
 
 import "./NewPlaces.css";
+import { useForm } from "../../Shared/hooks/form-hook";
 
-const formReducer=(state, action)=>{
-  switch(action.type){
-  case 'INPUT_CHANGE':
-    //logic to ruturn
-    let formIsValid = true;
-    for(const inputId in state.inputs){
-        if(inputId=== action.inputId){
-          formIsValid = formIsValid && action.isValid;
-        }
-        else{
-          formIsValid = formIsValid && state.inputs[inputId].isValid;
-        }
-    }
-    return{
-      ...state,
-      inputs:{
-        ...state.inputs,
-        [action.inputId] : {
-          value: action.value,
-          isValid: action.isValid
-        }
-      },
-      isValid: formIsValid
 
-    }
-  default:
-    return action
-  }
-
-}
 
 export default function NewPlaces() {
-  const [formState, dispatch]=useReducer(formReducer, {
-    inputs:{
+  // using custom hooks
+  const [formState, inputhandler]=useForm({
+    // Dynaic input
+    // initialInputs
       title:{
         value:"",
         isValid: false
@@ -54,17 +28,12 @@ export default function NewPlaces() {
         isValid: false
       }
     },
-    isValid: false
-  })
+    // initialFormValidity
+    false
 
-  const inputhandler = useCallback((id, value, isValid)=>{
-    dispatch({
-      type:"INPUT_CHANGE",
-      value: value,
-      isValid: isValid,
-      inputId: id
-    })
-  }, [dispatch])
+  );
+
+
 
   const placeSubmitHandler = (event)=>{
     event.preventDefault();
