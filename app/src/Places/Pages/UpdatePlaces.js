@@ -9,7 +9,9 @@ import {
 import Button from "../../Shared/Componets/FormElements/Button";
 
 import "../Components/PlaceForm.css"
+
 import { useForm } from "../../Shared/hooks/form-hook";
+
 
 const DUMMY_PLACES = [
   {
@@ -77,9 +79,11 @@ const UpdatePlaces = () => {
         label="Title"
         validators={[VALIDATOR_REQUIRE]}
         errorText = "Please enter a valid title"
+
         onInput={inputHandler}
         initialValue={formState.inputs.title.value}
         initialValid={formState.inputs.title.isValid}
+
       />
       <Input
         id="description"
@@ -87,11 +91,13 @@ const UpdatePlaces = () => {
         label="Title"
         validators={[ VALIDATOR_MINLENGTH(5)]}
         errorText = "Please enter a valid description (min 5 characters)"
+
         onInput={inputHandler}
         initialValue={formState.inputs.description.value}
         initialValid={formState.inputs.description.isValid}
       />
       <Button type="submit" disable={!formState.isValid}>UPDATE PLACES</Button>
+
     </form>
   );
 };
