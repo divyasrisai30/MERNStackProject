@@ -25,13 +25,17 @@ const formReducer=(state, action)=>{
         isValid: formIsValid
   
       }
+    case 'SET_DATA':
+      return {
+        inputs: action.inputs,
+        isValid: action.formIsValid
+      }
+
     default:
       return action
     }
   
   }
-
-  
 
 export const useForm = (initialInputs, initialFormValidity) =>{ 
     // custome form should always start with small letters
@@ -49,9 +53,15 @@ export const useForm = (initialInputs, initialFormValidity) =>{
           isValid: isValid,
           inputId: id
         })
-      }, [dispatch])
-
+      }, [])
+      const setFormData = useCallback((inputData, formValidity)=>{
+        dispatch({
+          type: 'SET_DATA',
+          inputs: inputData,
+          formIsValid: formValidity
+        })
+      },[])
     //   since it is a custom hook we need to have a return
-    return [formState, inputhandler]
+    return [formState, inputhandler, setFormData]
 
 }
