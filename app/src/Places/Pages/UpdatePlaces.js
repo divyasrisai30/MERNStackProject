@@ -10,6 +10,7 @@ import Button from "../../Shared/Componets/FormElements/Button";
 
 import "../Components/PlaceForm.css"
 import { useForm } from "../../Shared/hooks/form-hook";
+import Card from "../../Shared/Componets/UIElements/Card";
 
 const DUMMY_PLACES = [
   {
@@ -30,7 +31,7 @@ const DUMMY_PLACES = [
   {
     //array of objects
     id: "p2",
-    title: "Empire state Building",
+    title: "Emp state Building",
     description:
       "The building was designed by Shreve, Lamb & Harmon and built from 1930 to 1931.",
     imageUrl:
@@ -64,17 +65,18 @@ const UpdatePlaces = () => {
   const identifiedPlace = DUMMY_PLACES.find((p) => p.id === placeId);
 
   useEffect(()=>{
-    console.log("UpdatePlaces")
-    setFormData({
-      title:{
-        value: identifiedPlace.title,
-        isValid: true
-      },
-      description:{
-        value: identifiedPlace.description,
-        isValid: true
-      }
-    }, true);
+    if(identifiedPlace){
+      setFormData({
+        title:{
+          value: identifiedPlace.title,
+          isValid: true
+        },
+        description:{
+          value: identifiedPlace.description,
+          isValid: true
+        }
+      }, true);
+    }
     setIsLoading(false);
   }, [setFormData, identifiedPlace])
   
@@ -87,7 +89,10 @@ const UpdatePlaces = () => {
   if (!identifiedPlace) {
     return (
       <div className="center">
+        <Card>
         <h2>Cound not find place</h2>
+        </Card>
+        
       </div>
     );
   }
