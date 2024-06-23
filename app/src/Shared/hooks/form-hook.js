@@ -4,8 +4,13 @@ const formReducer=(state, action)=>{
     switch(action.type){
     case 'INPUT_CHANGE':
       //logic to ruturn
+
       let formIsValid = true;
+      
       for(const inputId in state.inputs){
+        if(!state.inputs[inputId]){  //error: related to name field in signUp
+          continue;
+        }
           if(inputId=== action.inputId){
             formIsValid = formIsValid && action.isValid;
           }
