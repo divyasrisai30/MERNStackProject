@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import { AuthContext } from "../Context/auth-context";
 
 import Card from "../../Shared/Componets/UIElements/Card";
 import Button from "../../Shared/Componets/FormElements/Button";
@@ -7,6 +8,8 @@ import Modal from "../../Shared/Componets/UIElements/Modal";
 import "./PlaceForm.css"
 
 const PlaceItem = props =>{
+    const auth = useContext(AuthContext);
+
     const [showMap, setShowMap] = useState(false);
 
     const openMapHeandler = ()=> setShowMap(true);
@@ -36,8 +39,9 @@ const PlaceItem = props =>{
                 </div>
                 <div className="place-item__actions">
                     <Button inverse onClick={openMapHeandler}>VIEW IN MAP</Button>
-                    <Button to={`/places/${props.id}`}>EDIT</Button>
-                    <Button danger>DELETE</Button>
+                    {auth.isLoggedIn && <Button to={`/places/${props.id}`}>EDIT</Button>}
+                    {auth.isLoggedIn && <Button danger>DELETE</Button>}
+                    
                 </div>
             </Card>
         </li>

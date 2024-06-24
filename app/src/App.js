@@ -19,30 +19,52 @@ function App() {
   const logout = useCallback(()=>{
     setIsLoggedIn(false);
   })
+  let routes;
+
+  if(isLoggedIn){
+    routes= (
+      <Switch>
+        <Route path="/" exact>
+          <Users />
+        </Route>
+        <Route path="/:userId/places" exact>
+          <UserPlaces />
+        </Route>
+        <Route path="/places/new" exact>
+          <NewPlaces />
+        </Route>
+        <Route path="/places/:placeId">
+          <UpdatePlaces />
+        </Route>
+        <Redirect to="/" />
+        </Switch>
+    )
+  }else{
+    routes= (
+      <Switch>
+        <Route path="/" exact>
+          <Users />
+        </Route>
+        <Route path="/:userId/places" exact>
+          <UserPlaces />
+        </Route>
+        <Route path="/auth">
+          <Auth />
+        </Route>
+        <Redirect to="/auth" />
+        
+          {/* Caution: ORDER MATTERS. use this only after "/places/<something>" beacause "/places/:placeId" is a dynamic link which might be similar or confuse to "/places/<something>" link  */}
+      </Switch>
+    )
+  }
   return (
     <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout:logout}}>
     <Router>
       <Mainavigation></Mainavigation>
       <main>
-          <Switch>
-          <Route path="/" exact>
-            <Users></Users>
-          </Route>
-          <Route path="/:userId/places" exact>
-            <UserPlaces></UserPlaces>
-          </Route>
-          <Route path="/places/new" exact>
-            <NewPlaces/>
-          </Route>
-          {/* Caution: ORDER MATTERS. use this only after "/places/<something>" beacause "/places/:placeId" is a dynamic link which might be similar or confuse to "/places/<something>" link  */}
-          <Route path="/places/:placeId">
-            <UpdatePlaces/>
-          </Route>
-          <Route path="/auth">
-            <Auth/>
-          </Route>
-          <Redirect to="/"/>
-          </Switch>
+          
+           {routes}
+          
           </main>
         </Router>
     </AuthContext.Provider>
